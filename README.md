@@ -1,4 +1,4 @@
-# The largest heading
+# Java upgrade example errors and solutions
 This project shows the errors encountered during a Java upgrade and the necessary fixes. 
 
 Per Java version there is a Maven module to show what went wrong starting in that version and how it can be fixed.
