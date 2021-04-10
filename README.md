@@ -110,9 +110,9 @@ Add the necessary dependencies:
     <version>3.0.0</version>
 </dependency>
 <dependency>
-    <groupId>com.sun.xml.bind</groupId>
-    <artifactId>jaxb-impl</artifactId>
-    <version>3.0.0</version>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>2.3.3</version>
     <scope>runtime</scope>
 </dependency>
 ```
