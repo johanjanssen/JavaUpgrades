@@ -103,19 +103,42 @@ cannot find symbol
 ```
 ##### Solution
 Add the necessary dependencies:
+
+For the API there's:
 ```xml
 <dependency>
     <groupId>jakarta.xml.bind</groupId>
     <artifactId>jakarta.xml.bind-api</artifactId>
     <version>3.0.0</version>
 </dependency>
+```
+
+For the implementation there are a few options listed below. If you already use one of them as a transitive dependency then it's probably best to use that one to avoid conflicts.
+
+The following command can be used to check if you already use one of the implementations via a transitive dependency:
+```bash
+mvn dependency:tree -Dincludes=org.glassfish.jaxb:jaxb-runtime
+mvn dependency:tree -Dincludes=com.sun.xml.bind:jaxb-impl
+```
+
+If you don't have a JAXB implementation as a transitive dependency then it's probably best to use the following Glassfish implementation.
+```xml
 <dependency>
     <groupId>org.glassfish.jaxb</groupId>
     <artifactId>jaxb-runtime</artifactId>
-    <version>2.3.3</version>
+    <version>3.0.0</version>
     <scope>runtime</scope>
 </dependency>
 ```
+Or the jaxb-impl which is now called the [Old JAXB Runtime](https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl)
+```xml
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
+
 
 #### Removal of javax.jws javax.xml.soap javax.xml.ws
 
