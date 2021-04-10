@@ -8,9 +8,13 @@ ADD . /javaupgrades
 WORKDIR /javaupgrades
 
 # Cache dependencies
-RUN mvn test dependency:go-offline --fail-at-end
+RUN mvn dependency:go-offline --fail-at-end
 
 # Used to force Docker to always run the commands below the ARG instead of using the cache
 ARG DISABLE_CACHE
+
+# Adding fonts as Java no longer includes them by default on Java 11
+RUN apt-get update
+RUN apt install fontconfig -y
 
 RUN mvn test --offline --fail-at-end -Dmaven.compiler.release=$JDK_VERSION

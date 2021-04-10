@@ -12,6 +12,7 @@
     <artifactId>fixed_on_Java_11_new_package</artifactId>
 
     <dependencies>
+        <!-- For java.xml.bind (JAXB)-->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
@@ -22,6 +23,39 @@
             <artifactId>jaxb-impl</artifactId>
             <version>3.0.0</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- For java.activation -->
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!-- For javax.annotation -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- For javax.transaction -->
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- For java.xml.ws -->
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
 </project>

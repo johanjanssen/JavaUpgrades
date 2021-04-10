@@ -12,6 +12,7 @@
         <module>broken_on_Java_11</module>
         <module>fixed_on_Java_11</module>
         <module>fixed_on_Java_11_new_package</module>
+        <module>removed_fonts</module>
     </modules>
 
     <properties>

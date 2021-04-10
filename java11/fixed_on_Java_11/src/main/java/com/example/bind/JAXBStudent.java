@@ -1,4 +1,4 @@
-package com.example;
+package com.example.bind;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
