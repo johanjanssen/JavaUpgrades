@@ -8,6 +8,48 @@ This project uses Maven, however the issues will be the same with other buildtoo
 This readme first describes the issues and solutions for each Java version. After that the various ways to run multiple JDK's on one machine are described.
 
 # Issues and solutions per Java version
+
+## Java general
+This document describes the bigger changes of Java. There are many more (smaller) items of Java removed. This chapter lists the various categories which were removed. For detailed information, please look at the release notes:
+- [Java 10](https://www.oracle.com/java/technologies/javase/10-relnote-issues.html)
+- [Java 11](https://www.oracle.com/java/technologies/javase/11-relnote-issues.html)
+- [Java 12](https://www.oracle.com/java/technologies/javase/12-relnote-issues.html)
+- [Java 13](https://www.oracle.com/java/technologies/javase/13-relnote-issues.html)
+- [Java 14](https://www.oracle.com/java/technologies/javase/14-relnote-issues.html)
+- [Java 15](https://www.oracle.com/java/technologies/javase/15-relnote-issues.html)
+- [Java 16](https://www.oracle.com/java/technologies/javase/16-relnote-issues.html)
+
+### Removal of VM flags/options
+For instance
+```bash
+-XX:+AggressiveOpts
+```
+and
+```bash
+-Xoptimize
+```
+
+### Removal of (root) certificates
+"The T-Systems Deutsche Telekom Root CA 2 certificate has expired and was removed from the cacerts keystore"
+
+### Removal of encryption algorithms
+Algorithms deemed unsafe are removed.
+
+### Removal of garbage collectors
+For instance the Concurrent Mark and Sweep (CMS) garbage collector was removed in 14.
+
+### Removed from API
+Parts of the API such as methods can be deprecated and later removed.
+
+It's possible to see the deprecated and removed parts of the API per Java version. For instance via the [The Java Version Almanac](https://javaalmanac.io/) or via [foojay](https://foojay.io/almanac/jdk-16/)
+
+### Removed tools
+Some are no longer available, others such as JDK Mission Control and JavaFX now are available as separate builds from various vendors.
+
+Some JDK's such as ojdkbuild and some builds of Liberica JDK still offer a JDK which includes some of the tools.
+
+
+
 ## Java 11
 ### JEP 320: Remove the Java EE and CORBA Modules
 The EE packages were removed in Java 11. If you still need them, you can add them as Maven/Gradle dependencies.
@@ -200,6 +242,11 @@ JavaFX is removed from the JDK and continued as OpenJFX.
 Some vendors offer builds of OpenJFX such as [Gluon](https://gluonhq.com/products/javafx/)
 
 Some vendors offer JDK builds which include OpenJFX such as [Liberica's full version](https://bell-sw.com/pages/products/) and [ojdkbuild](https://github.com/ojdkbuild/ojdkbuild/wiki/Motivation)
+
+### Java Mission Control (JMC) removed
+Use one of the builds of JDK Mission control:
+ - [Oracle](https://www.oracle.com/java/technologies/jdk-mission-control.html)
+ - [AdoptOpenJDK](https://adoptopenjdk.net/jmc.html)
 
 ## Java 15
 ### JEP 372: Remove the Nashorn JavaScript Engine
