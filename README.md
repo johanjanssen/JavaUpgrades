@@ -5,13 +5,12 @@ Per Java version there is a Maven module to show what went wrong starting in tha
 
 This project uses Maven, however the issues will be the same with other buildtools.
 
-This readme first describes the issues and solutions for each Java version. After that the various ways to run multiple JDK's on one machine are described. 
+This readme first describes the issues and solutions for Java in general and then for each specific Java version. After that the various ways to run multiple JDK's on one machine are described. 
 
 The last part also describes how to run the examples. For instance the Java 15 examples work on Java 14. When run on Java 15 the broken examples will fail, while the fixed ones will succeed.
 
-# Issues and solutions per Java version
 
-## Java general
+# Java general challenges
 This document describes the bigger changes of Java. There are many more (smaller) items of Java removed. This chapter lists the various categories which were removed. For detailed information, please look at the release notes:
 - [Java 10](https://www.oracle.com/java/technologies/javase/10-relnote-issues.html)
 - [Java 11](https://www.oracle.com/java/technologies/javase/11-relnote-issues.html)
@@ -22,7 +21,7 @@ This document describes the bigger changes of Java. There are many more (smaller
 - [Java 16](https://www.oracle.com/java/technologies/javase/16-relnote-issues.html)
 - [Oracle JRE and JDK Cryptographic Roadmap](https://java.com/en/jre-jdk-cryptoroadmap.html)
 
-### Removal of VM flags/options
+## Removal of VM flags/options
 For instance
 ```bash
 -XX:+AggressiveOpts
@@ -32,27 +31,27 @@ and
 -Xoptimize
 ```
 
-### Removal of (root) certificates
+## Removed (root) certificates
 "The T-Systems Deutsche Telekom Root CA 2 certificate has expired and was removed from the cacerts keystore"
 
-### Removal of encryption algorithms
+## Removed encryption algorithms
 Algorithms deemed unsafe are removed.
 
-### Removal of garbage collectors
+## Removed garbage collectors
 For instance the Concurrent Mark and Sweep (CMS) garbage collector was removed in 14.
 
-### Removed from API
+## Removed from API
 Parts of the API such as methods can be deprecated and later removed.
 
 It's possible to see the deprecated and removed parts of the API per Java version. For instance via the [The Java Version Almanac](https://javaalmanac.io/) or via [foojay](https://foojay.io/almanac/jdk-16/)
 
-### Removed tools
+## Removed tools
 Some are no longer available, others such as JDK Mission Control and JavaFX now are available as separate builds from various vendors.
 
 Some JDK's such as ojdkbuild and some builds of Liberica JDK still offer a JDK which includes some of the tools.
 
 
-
+# Issues and solutions per Java version
 ## Java 11
 ### JEP 320: Remove the Java EE and CORBA Modules
 The EE packages were removed in Java 11. If you still need them, you can add them as Maven/Gradle dependencies.
