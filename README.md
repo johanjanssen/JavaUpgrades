@@ -18,6 +18,7 @@ This document describes the bigger changes of Java. There are many more (smaller
 - [Java 14](https://www.oracle.com/java/technologies/javase/14-relnote-issues.html)
 - [Java 15](https://www.oracle.com/java/technologies/javase/15-relnote-issues.html)
 - [Java 16](https://www.oracle.com/java/technologies/javase/16-relnote-issues.html)
+- [Oracle JRE and JDK Cryptographic Roadmap](https://java.com/en/jre-jdk-cryptoroadmap.html)
 
 ### Removal of VM flags/options
 For instance
