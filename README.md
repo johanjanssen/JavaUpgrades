@@ -5,7 +5,9 @@ Per Java version there is a Maven module to show what went wrong starting in tha
 
 This project uses Maven, however the issues will be the same with other buildtools.
 
-This readme first describes the issues and solutions for each Java version. After that the various ways to run multiple JDK's on one machine are described.
+This readme first describes the issues and solutions for each Java version. After that the various ways to run multiple JDK's on one machine are described. 
+
+The last part also describes how to run the examples. For instance the Java 15 examples work on Java 14. When run on Java 15 the broken examples will fail, while the fixed ones will succeed.
 
 # Issues and solutions per Java version
 
@@ -76,6 +78,8 @@ You should instead use the Jakarta dependency which has the newer 3.0.0 version.
 #### Removal of javax.activation
 
 ##### Example error
+*Example code can be found under java11/javaee_removed_broken*
+
 ```bash
 package javax.activation does not exist
 ```
@@ -84,6 +88,8 @@ cannot find symbol
 [ERROR]   symbol:   class URLDataSource
 ```
 ##### Solution
+*Example code can be found under java11/javaee_removed_fixed_new_package*
+
 Add the necessary dependencies:
 ```xml
 <dependency>
@@ -95,6 +101,8 @@ Add the necessary dependencies:
 #### Removal of javax.annotation
 
 ##### Example error
+*Example code can be found under java11/javaee_removed_broken*
+
 ```bash
 package javax.annotation does not exist
 ```
@@ -103,6 +111,8 @@ cannot find symbol
 [ERROR]   symbol:   class PostConstruct
 ```
 ##### Solution
+*Example code can be found under java11/javaee_removed_fixed_new_package*
+
 Add the necessary dependencies:
 ```xml
 <dependency>
@@ -114,6 +124,8 @@ Add the necessary dependencies:
 #### Removal of javax.transaction
 
 ##### Example error
+*Example code can be found under java11/javaee_removed_broken*
+
 ```bash
 package javax.transaction does not exist
 ```
@@ -122,6 +134,8 @@ cannot find symbol
 [ERROR]   symbol:   class TransactionRequiredException
 ```
 ##### Solution
+*Example code can be found under java11/javaee_removed_fixed_new_package*
+
 Add the necessary dependencies:
 ```xml
 <dependency>
@@ -133,6 +147,8 @@ Add the necessary dependencies:
 
 #### Removal of javax.xml.bind
 ##### Example error
+*Example code can be found under java11/javaee_removed_broken*
+
 ```bash
 package javax.xml.bind.annotation does not exist
 ```
@@ -145,6 +161,8 @@ cannot find symbol
 [ERROR]   symbol:   class JAXBException
 ```
 ##### Solution
+*Example code can be found under java11/javaee_removed_fixed_new_package*
+
 Add the necessary dependencies:
 
 For the API there's:
@@ -186,6 +204,8 @@ Or the jaxb-impl which is now called the [Old JAXB Runtime](https://mvnrepositor
 #### Removal of javax.jws javax.xml.soap javax.xml.ws
 
 ##### Example error
+*Example code can be found under java11/javaee_removed_broken*
+
 ```bash
 package javax.xml.ws does not exist
 ```
@@ -194,6 +214,8 @@ cannot find symbol
 [ERROR]   symbol:   class Service
 ```
 ##### Solution
+*Example code can be found under java11/javaee_removed_fixed_new_package*
+
 Add the necessary dependencies:
 ```xml
 <dependency>
@@ -218,6 +240,8 @@ The JDK contained some fonts, but they were removed in Java 11. If the applicati
 More info from [Azul](https://www.azul.com/the-font-of-all-knowledge-about-java-and-fonts/) and [AdoptOpenJDK](https://blog.adoptopenjdk.net/2021/01/prerequisites-for-font-support-in-adoptopenjdk/)
 
 #### Example errors
+*Example code can be found under java11/removed_fonts*
+
 ```bash
 java.lang.UnsatisfiedLinkError: /usr/local/openjdk-11/lib/libfontmanager.so: 
   libfreetype.so.6: cannot open shared object file: No such file or directory
@@ -228,6 +252,8 @@ java.lang.NoClassDefFoundError: Could not initialize class sun.awt.X11FontManage
 ```
 
 #### Solution
+*Example code can be found in DockerfileWithFonts*
+
 Install the necessary fonts, for instance with:
 ```
 apt install fontconfig
@@ -244,6 +270,8 @@ Some vendors offer builds of OpenJFX such as [Gluon](https://gluonhq.com/product
 
 Some vendors offer JDK builds which include OpenJFX such as [Liberica's full version](https://bell-sw.com/pages/products/) and [ojdkbuild](https://github.com/ojdkbuild/ojdkbuild/wiki/Motivation)
 
+Use the (Maven) dependencies of [OpenJFX](https://openjfx.io/)
+
 ### Java Mission Control (JMC) removed
 Use one of the builds of JDK Mission control:
  - [Oracle](https://www.oracle.com/java/technologies/jdk-mission-control.html)
@@ -253,7 +281,16 @@ Use one of the builds of JDK Mission control:
 ### JEP 372: Remove the Nashorn JavaScript Engine
 Nashorn is no longer included in the standard JDK.
 
+#### Example errors
+*Example code can be found under java15/nashorn_broken*
+
+```bash
+java.lang.NullPointerException: Cannot invoke "javax.script.ScriptEngine.eval(String)" because "engine" is null
+```
+
 #### Solution
+*Example code can be found under java15/nashorn_fixed*
+
 Add the necessary dependencies:
 ```xml
 <dependency>
@@ -268,11 +305,15 @@ Add the necessary dependencies:
 Internals of the JDK can no longer be used by default. This mainly impacts tooling which uses low level features of the JDK.
 
 #### Example errors
+*Example code can be found under java16/lombok_broken*
+
 ```bash
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project broken: Fatal error compiling: java.lang.IllegalAccessError: class lombok.javac.apt.LombokProcessor (in unnamed module @0x21bd20ee) cannot access class com.sun.tools.javac.processing.JavacProcessingEnvironment (in module jdk.compiler) because module jdk.compiler does not export com.sun.tools.javac.processing to unnamed module @0x21bd20ee -> [Help 1]
 ```
 
 #### Solution
+*Example code can be found under java16/lombok_fixed*
+
 Preferably use a new version of the dependency which causes the issue. For instance Lombok 1.18.20 includes support for Java 16:
 ```xml
 <dependency>
@@ -344,6 +385,7 @@ Or change the Maven releases in the `pom.xml`:
 ## Using Docker containers
 Then use the following Docker command inside one of the Java directories (java11, java16...):
 
+Change the JDK_VERSION to whatever version (11 or greater) you want:
 ```shell script
 docker build -t javaupgrades -f ..\Dockerfile --build-arg DISABLE_CACHE="%date%-%time%" --build-arg JDK_VERSION=16 .
 ```

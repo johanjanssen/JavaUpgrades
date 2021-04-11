@@ -30,20 +30,7 @@ public class FontExampleTest {
 
     @Test
     public void testExample() {
-        try (final Workbook workbook = new XSSFWorkbook()) {
-            final Sheet sheet = workbook.createSheet("Asset requests");
-            int rowNum = 0;
-            int colNum = 0;
-            int maxColNum;
-            final Row headerRow = sheet.createRow(rowNum++);
-            headerRow.createCell(colNum++).setCellValue("Asset request title");
-            headerRow.createCell(colNum++).setCellValue("Asset request type");
-            headerRow.createCell(colNum++).setCellValue("Asset request description");
-            headerRow.createCell(colNum++).setCellValue("Content item");
-            maxColNum = colNum;
-
-        } catch (final IOException e) {
-            throw new IllegalStateException(e);
-        }
+        final Workbook workbook = new XSSFWorkbook();
+        final Sheet sheet = workbook.createSheet("Asset requests");
     }
 }
