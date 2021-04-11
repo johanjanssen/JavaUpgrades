@@ -12,6 +12,8 @@ The last part also describes how to run the examples. For instance the Java 15 e
 
 # Java general challenges
 This document describes the bigger changes of Java. There are many more (smaller) items of Java removed. This chapter lists the various categories which were removed. For detailed information, please look at the release notes:
+
+Java release notes
 - [Java 10](https://www.oracle.com/java/technologies/javase/10-relnote-issues.html)
 - [Java 11](https://www.oracle.com/java/technologies/javase/11-relnote-issues.html)
 - [Java 12](https://www.oracle.com/java/technologies/javase/12-relnote-issues.html)
@@ -19,7 +21,21 @@ This document describes the bigger changes of Java. There are many more (smaller
 - [Java 14](https://www.oracle.com/java/technologies/javase/14-relnote-issues.html)
 - [Java 15](https://www.oracle.com/java/technologies/javase/15-relnote-issues.html)
 - [Java 16](https://www.oracle.com/java/technologies/javase/16-relnote-issues.html)
+  
+Security roadmap
 - [Oracle JRE and JDK Cryptographic Roadmap](https://java.com/en/jre-jdk-cryptoroadmap.html)
+
+OpenJDK features
+- [Java 9](https://openjdk.java.net/projects/jdk9/)
+- [Java 10](https://openjdk.java.net/projects/jdk/10/)
+- [Java 11](https://openjdk.java.net/projects/jdk/11/)
+- [Java 12](https://openjdk.java.net/projects/jdk/12/)
+- [Java 13](https://openjdk.java.net/projects/jdk/13/)
+- [Java 14](https://openjdk.java.net/projects/jdk/14/)
+- [Java 15](https://openjdk.java.net/projects/jdk/15/)
+- [Java 16](https://openjdk.java.net/projects/jdk/16/)
+- [Java 17](https://openjdk.java.net/projects/jdk/17/)
+
 
 ## Removal of VM flags/options
 For instance
