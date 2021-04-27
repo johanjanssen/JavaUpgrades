@@ -4,7 +4,7 @@ ADD . /javaupgrades
 WORKDIR /javaupgrades
 
 # Cache dependencies
-RUN mvn compile dependency:go-offline --fail-at-end
+RUN mvn dependency:go-offline --fail-at-end
 
 # Used to force Docker to always run the commands below the ARG instead of using the cache
 ARG DISABLE_CACHE

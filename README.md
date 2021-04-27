@@ -499,3 +499,19 @@ While compiling without the toolchain gives the more descriptive error message:
 ```
 
 So I don't recommend the usage of Maven Toolchains for upgrading to Java 16 or 17 at this point in time.
+
+# Interesting other things
+
+## Multi release JAR
+Multi release JAR's make it possible to create one JAR file which supports multiple Java versions for backward compatibility.
+
+This example uses records and ```String.isBlank()``` which was introduced in Java 11. The example has two main directories:
+- src/main/java used on Java versions below Java 16
+- src/main/java16 used by Java version 16 and above
+
+The JAR file for this example should be build on Java 16 and can then be used on various Java versions.
+
+The following command can be used to build the examples on Java 16 and then run them on 8, 11 and 16:
+```shell script
+docker build -t multi-release-jar -f Dockerfile .
+```
