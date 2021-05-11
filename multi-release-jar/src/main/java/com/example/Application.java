@@ -10,6 +10,6 @@ public class Application {
         System.out.println("Student name with one space is blank: " + studentBlank.isBlankName());
 
         Student student = new Student("James");
-        System.out.println("Student name with one space is blank: " + student.isBlankName());
+        System.out.println("Student name James is blank: " + student.isBlankName());
     }
 }

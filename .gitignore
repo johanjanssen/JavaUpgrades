@@ -150,3 +150,5 @@ buildNumber.properties
 
 .project
 .settings
+.classpath
+.factorypath

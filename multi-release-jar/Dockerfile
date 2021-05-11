@@ -1,5 +1,5 @@
 # Build the JAR file and run it on Java 16
-FROM maven:3.6.3-openjdk-16-slim AS builder
+FROM maven:3.8.1-openjdk-17-slim AS builder
 
 ADD . /multi-release-jar
 WORKDIR /multi-release-jar
@@ -13,14 +13,14 @@ RUN java -jar target/*.jar
 
 
 # Run the JAR file on Java 8
-FROM maven:3.6.3-openjdk-8-slim
+FROM maven:3.8.1-openjdk-8-slim
 
 COPY --from=builder /multi-release-jar/target/*.jar .
 RUN java -jar *.jar
 
 
 # Run the JAR file on Java 11
-FROM maven:3.6.3-openjdk-11-slim
+FROM maven:3.8.1-openjdk-17-slim
 
 COPY --from=builder /multi-release-jar/target/*.jar .
 RUN java -jar *.jar
