@@ -20,7 +20,7 @@ RUN java -jar *.jar
 
 
 # Run the JAR file on Java 11
-FROM maven:3.8.1-openjdk-17-slim
+FROM maven:3.8.1-openjdk-11-slim
 
 COPY --from=builder /multi-release-jar/target/*.jar .
 RUN java -jar *.jar

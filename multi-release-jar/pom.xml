@@ -8,8 +8,8 @@
     <artifactId>multi-release-jar</artifactId>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <build>
@@ -30,15 +30,15 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>compile-java-16</id>
+                        <id>compile-java-17</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <release>16</release>
+                            <release>17</release>
                             <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java16</compileSourceRoot>
+                                <compileSourceRoot>${project.basedir}/src/main/java17</compileSourceRoot>
                             </compileSourceRoots>
                             <multiReleaseOutput>true</multiReleaseOutput>
                         </configuration>
