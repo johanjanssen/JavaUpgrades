@@ -16,6 +16,9 @@ RUN java -jar target/*.jar
 FROM maven:3.8.1-openjdk-8-slim
 
 COPY --from=builder /multi-release-jar/target/*.jar .
+
+# Used to force Docker to always run the commands below the ARG instead of using the cache
+ARG DISABLE_CACHE
 RUN java -jar *.jar
 
 
@@ -23,4 +26,7 @@ RUN java -jar *.jar
 FROM maven:3.8.1-openjdk-11-slim
 
 COPY --from=builder /multi-release-jar/target/*.jar .
+
+# Used to force Docker to always run the commands below the ARG instead of using the cache
+ARG DISABLE_CACHE
 RUN java -jar *.jar

@@ -513,5 +513,5 @@ The JAR file for this example should be build on Java 16 and can then be used on
 
 The following command can be used to build the examples on Java 16 and then run them on 8, 11 and 16:
 ```shell script
-docker build -t multi-release-jar -f Dockerfile .
+docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%"  .
 ```
