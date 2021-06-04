@@ -13,6 +13,7 @@
         <module>java15</module>
         <module>java16</module>
         <module>multi-release-jar</module>
+        <module>java17</module>
     </modules>
 
     <!-- This is just a container, the sub projects don't reference this pom so they can be run without this pom. -->
