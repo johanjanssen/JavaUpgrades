@@ -606,3 +606,5 @@ The following command can be used to build the examples on Java 16 and then run 
 ```shell script
 docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%"  .
 ```
+
+Make sure your code for all Java versions contains the same public API's, else you might run into runtime issues. IntelliJ checks this and Java 17 now [contains](https://github.com/openjdk/jdk/pull/3971) the ```jar --validate``` option to verify a JAR file. Build tools like Maven don't verify it automatically.
