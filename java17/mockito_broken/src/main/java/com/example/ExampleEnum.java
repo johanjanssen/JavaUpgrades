@@ -6,8 +6,4 @@ public enum ExampleEnum {
             return "test";
         }
     };
-
-    public String getValue() {
-        return "21";
-    }
 }

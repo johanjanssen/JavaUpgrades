@@ -362,6 +362,97 @@ If there's no new dependency available it's possible to open up the JDK internal
 </plugin>
 ```
 
+## Java 17
+### JEP 403: Strongly Encapsulate JDK Internals
+Launcher option --illegal-access no longer works to access internal JDK API's. 
+
+#### Example errors
+```bash
+java.lang.reflect.InaccessibleObjectException: Unable to make … accessible: module java.base does not "opens …" to unnamed module …
+```
+#### Solution
+- If triggered by a dependency, upgrade the dependency
+- Refactor code to no longer use internal JDK API's
+- As a last resort use ```--add-opens``` for instance:
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <argLine>
+            --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED
+        </argLine>
+    </configuration>
+</plugin>
+```
+
+### JEP ?
+
+Mockito raises an exception when Mocking an enum which uses methods in values, such as for example:
+```java
+public enum ExampleEnum {
+    TEST {
+        public String retrieve() {
+            return "test";
+        }
+    };
+}
+```
+```java
+@ExtendWith(MockitoExtension.class)
+public class ExampleEnumTest {
+
+    @Mock
+    private ExampleEnum exampleEnum;
+
+    @Test
+    public void testEnumWithMethods() {
+        assertNotNull(exampleEnum);
+    }
+}
+```
+
+#### Example errors
+*Example code can be found under java17/mockito_fixed*
+
+```bash
+org.mockito.exceptions.base.MockitoException:
+
+Mockito cannot mock this class: class com.example.ExampleEnum.
+
+If you're not sure why you're getting this error, please report to the mailing list.
+
+
+Java               : 17
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 17-ea+24-2164
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 17-ea+24-2164
+JVM info           : mixed mode, sharing
+OS name            : Linux
+OS version         : 4.19.76-linuxkit
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.example.ExampleEnum, interface java.lang.constant.Constable, class java.lang.Object, interface java.lang.Comparable, interface java.io.Serializable, class java.lang.Enum]
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class com.example.ExampleEnum, interface java.lang.constant.Constable, class java.lang.Object, interface java.lang.Comparable, interface java.io.Serializable, class java.lang.Enum]
+Caused by: java.lang.UnsupportedOperationException: class redefinition failed: attempted to change the class NestHost, NestMembers, Record, or PermittedSubclasses attribute
+```
+
+#### Solution
+Not yet available, see issue in [Mockito GitHub](https://github.com/mockito/mockito/issues/2315) repo.
+
+## Tests on all Java versions
+#### Example errors
+```bash
+An error has occurred in JaCoCo Aggregate report generation. Error while creating report: Error while analyzing … Unsupported class file major version X
+```
+#### Solution
+Update your dependencies
+
+
 # Running multiple JDK's on one machine
 
 ## Set JAVA_HOME before running an example
