@@ -363,6 +363,11 @@ If there's no new dependency available it's possible to open up the JDK internal
 ```
 
 ## Java 17
+
+### Gradle
+- Gradle doesn't [support](https://github.com/gradle/gradle/issues/16857) Java 17 yet
+- Kotlin Maven Plugin can't use 17 as a jvmTarget, but 16 works
+
 ### JEP 403: Strongly Encapsulate JDK Internals
 Launcher option --illegal-access no longer works to access internal JDK API's. 
 
@@ -444,13 +449,21 @@ Caused by: java.lang.UnsupportedOperationException: class redefinition failed: a
 #### Solution
 Not yet available, see issue in [Mockito GitHub](https://github.com/mockito/mockito/issues/2315) repo.
 
-## Tests on all Java versions
+## All Java versions
 #### Example errors
 ```bash
 An error has occurred in JaCoCo Aggregate report generation. Error while creating report: Error while analyzing … Unsupported class file major version X
 ```
+```bash
+Execution default of goal org.pitest:pitest-maven:1.4.10:mutationCoverage failed: Unsupported class file major version 61 
+```
+```bash
+Execution repackage of goal org.springframework.boot:spring-boot-maven-plugin:2.2.10.RELEASE:repackage failed: Unsupported class file major version 61
+```
 #### Solution
-Update your dependencies
+The class file major version 61 is used for Java 17. Make sure your plugins/dependencies are up to date and support Java 17. 
+
+- Update your plugins/dependencies
 
 
 # Running multiple JDK's on one machine
@@ -493,7 +506,7 @@ Then use the following Docker command inside one of the Java directories (java11
 
 Change the JDK_VERSION to whatever version (11 or greater) you want:
 ```shell script
-docker build -t javaupgrades -f ..\Dockerfile --build-arg DISABLE_CACHE="%date%-%time%" --build-arg JDK_VERSION=16 .
+docker build -t javaupgrades -f ..\Dockerfile --build-arg DISABLE_CACHE="%date%-%time%" --build-arg JDK_VERSION=17 .
 ```
 
 Or to build on Java 8, which requires a different configuration:
@@ -597,14 +610,14 @@ So I don't recommend the usage of Maven Toolchains for upgrading to Java 16 or 1
 Multi release JAR's make it possible to create one JAR file which supports multiple Java versions for backward compatibility.
 
 This example uses records and ```String.isBlank()``` which was introduced in Java 11. The example has two main directories:
-- src/main/java used on Java versions below Java 16
-- src/main/java16 used by Java version 16 and above
+- src/main/java used on Java versions below Java 17
+- src/main/java17 used by Java version 17 and above
 
-The JAR file for this example should be build on Java 16 and can then be used on various Java versions.
+The JAR file for this example should be build on Java 17 and can then be used on various Java versions.
 
-The following command can be used to build the examples on Java 16 and then run them on 8, 11 and 16:
+The following command can be used to build the examples on Java 17 and then run them on 8, 11 and 17:
 ```shell script
-docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%"  .
+docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%" .
 ```
 
 Make sure your code for all Java versions contains the same public API's, else you might run into runtime issues. IntelliJ checks this and Java 17 now [contains](https://github.com/openjdk/jdk/pull/3971) the ```jar --validate``` option to verify a JAR file. Build tools like Maven don't verify it automatically.
