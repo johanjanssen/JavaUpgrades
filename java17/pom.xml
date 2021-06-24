@@ -11,6 +11,7 @@
 
     <modules>
         <module>mockito_broken</module>
+        <module>mockito_fixed</module>
     </modules>
 
     <properties>
