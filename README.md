@@ -366,8 +366,8 @@ If there's no new dependency available it's possible to open up the JDK internal
 ## Java 17
 
 ### Gradle
-- Gradle doesn't [support](https://github.com/gradle/gradle/issues/16857) Java 17 yet
-- Kotlin Maven Plugin can't use 17 as a jvmTarget, but 16 works
+- Update to Gradle 7.3 to get Java 17 [support](https://github.com/gradle/gradle/issues/16857)
+- Update to Kotlin 1.6.0 to be able to set jvmTarget to 17
 
 ### JEP 403: Strongly Encapsulate JDK Internals
 Launcher option --illegal-access no longer works to access internal JDK API's. 
