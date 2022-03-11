@@ -507,7 +507,7 @@ Then use the following Docker command inside one of the Java directories (java11
 
 Change the JDK_VERSION to whatever version (11 or greater) you want:
 ```shell script
-docker build -t javaupgrades -f ..\Dockerfile --build-arg DISABLE_CACHE="%date%-%time%" --build-arg JDK_VERSION=17 .
+docker build -t javaupgrades -f ..\Dockerfile --build-arg DISABLE_CACHE="%date%-%time%" --build-arg JDK_VERSION=17 --progress=plain .
 ```
 
 Or to build on Java 8, which requires a different configuration:
@@ -618,7 +618,9 @@ The JAR file for this example should be build on Java 17 and can then be used on
 
 The following command can be used to build the examples on Java 17 and then run them on 8, 11 and 17:
 ```shell script
-docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%" .
+mvn package
+run-multi-release-application.cmd
+# docker build -t multi-release-jar --build-arg DISABLE_CACHE="%date%-%time%" --progress=plain .
 ```
 
 Make sure your code for all Java versions contains the same public API's, else you might run into runtime issues. IntelliJ checks this and Java 17 now [contains](https://github.com/openjdk/jdk/pull/3971) the ```jar --validate``` option to verify a JAR file. Build tools like Maven don't verify it automatically.
