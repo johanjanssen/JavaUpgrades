@@ -517,8 +517,6 @@ docker build -t javaupgrades -f ..\DockerfileJava8 --build-arg DISABLE_CACHE="%d
 
 
 ## Maven Toolchains
-**Please read until the end, for now I don't recommend the Maven toolchains as there appears to be a bug.**
-
 Maven Toolchains can be used to configure the JDK's present on your machine and then select one to use in the `pom.xml` of the project.
 
 First create a `toolchains.xml` located in *${user.home}/.m2/*
@@ -566,7 +564,6 @@ First create a `toolchains.xml` located in *${user.home}/.m2/*
 ```
 
 Then in the `pom.xml` configure which JDK from the toolchains.xml you want to use:
-
 ```xml
 <build>
     <plugins>
@@ -593,17 +590,17 @@ Then in the `pom.xml` configure which JDK from the toolchains.xml you want to us
 </build>
 ```
 
-Unfortunately currently there seems to be a bug as building the project with the toolchain gives:
+Make sure to update the Maven Compiler Plugin. When using an older version, combined with the Toolchains Plugin, the errors are not really detailed:
 ```shell script
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project broken: Compilation failure -> [Help 1]
 ```
 
-While compiling without the toolchain gives the more descriptive error message:
+When using a newer version of the Maven Compiler Plugin the error message provides more detailed information:
 ```shell script
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project broken: Fatal error compiling: java.lang.IllegalAccessError: class lombok.javac.apt.LombokProcessor (in unnamed module @0x21bd20ee) cannot access class com.sun.tools.javac.processing.JavacProcessingEnvironment (in module jdk.compiler) because module jdk.compiler does not export com.sun.tools.javac.processing to unnamed module @0x21bd20ee -> [Help 1]
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.10.1:compile (default-compile) on project lombok_broken: Compilation failure
+[ERROR] java.lang.IllegalAccessError: class lombok.javac.apt.LombokProcessor (in unnamed module @...) cannot access class com.sun.tools.javac.processing.JavacProcessingEnvironme
+nt (in module jdk.compiler) because module jdk.compiler does not export com.sun.tools.javac.processing to unnamed module @...
 ```
-
-So I don't recommend the usage of Maven Toolchains for upgrading to Java 16 or 17 at this point in time.
 
 # Interesting other things
 
