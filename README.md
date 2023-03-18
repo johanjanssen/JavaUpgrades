@@ -312,7 +312,7 @@ Add the necessary dependencies:
 <dependency>
     <groupId>org.openjdk.nashorn</groupId>
     <artifactId>nashorn-core</artifactId>
-    <version>15.2</version>
+    <version>15.4</version>
 </dependency>
 ```
 
@@ -448,7 +448,27 @@ Caused by: java.lang.UnsupportedOperationException: class redefinition failed: a
 ```
 
 #### Solution
-Not yet available, see issue in [Mockito GitHub](https://github.com/mockito/mockito/issues/2315) repo.
+Not yet available, see issue in [Mockito GitHub](https://github.com/mockito/mockito/issues/2315) repo, which mentions a workaround.
+
+## Java 21
+#### Example errors
+EqualsVerifier via Bytebuddy
+```bash
+-> Java 21 (65) is not supported by the current version of Byte Buddy which officially supports Java 20 (64) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
+```
+
+Upgrade to a version of Bytebuddy which supports Java 21 or use the workaround:
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <argLine>-Dnet.bytebuddy.experimental=true</argLine><!-- Needed as EqualsVerifier uses Byte Buddy which doesn't support Java 21 -->
+    </configuration>
+</plugin>
+```
+
+#### Solution
 
 ## All Java versions
 #### Example errors
