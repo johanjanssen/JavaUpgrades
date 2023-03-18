@@ -457,6 +457,7 @@ EqualsVerifier via Bytebuddy
 -> Java 21 (65) is not supported by the current version of Byte Buddy which officially supports Java 20 (64) - update Byte Buddy or set net.bytebuddy.experimental as a VM property
 ```
 
+#### Solution
 Upgrade to a version of Bytebuddy which supports Java 21 or use the workaround:
 ```xml
 <plugin>
@@ -467,8 +468,6 @@ Upgrade to a version of Bytebuddy which supports Java 21 or use the workaround:
     </configuration>
 </plugin>
 ```
-
-#### Solution
 
 ## All Java versions
 #### Example errors
