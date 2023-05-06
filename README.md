@@ -9,6 +9,13 @@ This readme first describes the issues and solutions for Java in general and the
 
 The last part also describes how to run the examples. For instance the Java 15 examples work on Java 14. When run on Java 15 the broken examples will fail, while the fixed ones will succeed.
 
+# Upgrading Java automatically
+[OpenRewrite](https://docs.openrewrite.org/) offers various recipes to upgrade your application automatically and even improve your code. It will make the changes locally and then you can decide if you want to commit all of them, or if you want to make changes. Using OpenRewrite can save a lot of time, compared to upgrading manually.
+
+Some of the recipes they provide:
+- [Migrate to Java 17](https://docs.openrewrite.org/running-recipes/popular-recipe-guides/migrate-to-java-17)
+- [Migrate from Java 8 to Java 17](https://docs.openrewrite.org/running-recipes/popular-recipe-guides/migrate-from-junit-4-to-junit-5)
+
 
 # Java general challenges
 This document describes the bigger changes of Java. There are many more (smaller) items of Java removed. This chapter lists the various categories which were removed. For detailed information, please look at the release notes:
