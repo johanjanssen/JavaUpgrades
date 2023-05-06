@@ -14,7 +14,7 @@ The last part also describes how to run the examples. For instance the Java 15 e
 
 Some of the recipes they provide:
 - [Migrate to Java 17](https://docs.openrewrite.org/running-recipes/popular-recipe-guides/migrate-to-java-17)
-- [Migrate from Java 8 to Java 17](https://docs.openrewrite.org/running-recipes/popular-recipe-guides/migrate-from-junit-4-to-junit-5)
+- [Migrate from JUnit 4 to JUnit 5](https://docs.openrewrite.org/running-recipes/popular-recipe-guides/migrate-from-junit-4-to-junit-5)
 
 
 # Java general challenges
