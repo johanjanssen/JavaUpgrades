@@ -36,7 +36,7 @@ OpenJDK features
 - [Java 15](https://openjdk.java.net/projects/jdk/15/)
 - [Java 16](https://openjdk.java.net/projects/jdk/16/)
 - [Java 17](https://openjdk.java.net/projects/jdk/17/)
-
+- [Java 21](https://openjdk.java.net/projects/jdk/21/)
 
 ## Removal of VM flags/options
 For instance
